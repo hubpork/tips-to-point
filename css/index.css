@@ -179,7 +179,7 @@ code {
     grid-template-columns: 1fr 1fr;
   }
   
-  p, figure, h2 {
+  p,ul, figure {
     margin: 0;
   }
 }
