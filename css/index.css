@@ -104,14 +104,12 @@ h3 {
 }
 
 .typo-grid {
-  gap: var(--space-l) !important;
   @media (width > 48rem) {
     grid-template-columns: 1fr 2fr;
   }
 
   h3 {
     font-size: var(--size-step-1);
-    margin: 0;
   }
 
   ul {
