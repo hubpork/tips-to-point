@@ -63,6 +63,7 @@ h2 {
   width: fit-content;
   padding: 3px var(--space-m) 0 var(--space-xs);
   position: relative;
+  align-self: flex-start;
 
   &::after {
     z-index: -1;
@@ -172,6 +173,7 @@ code {
 
 .header__topgrid {
   display: grid;
+  gap: var(--space-l);
   @media (width > 48rem) {
     grid-template-columns: 1fr 2fr;
   }
@@ -179,7 +181,7 @@ code {
     grid-template-columns: 1fr 1fr;
   }
   
-  p,ul, figure {
+  p, figure, h2 {
     margin: 0;
   }
 }
