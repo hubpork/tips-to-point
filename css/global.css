@@ -1,0 +1,1322 @@
+@layer reset, base, prose, layouts, helper, effects, modifier, components;
+
+@layer effects {
+  .transform {
+    --tw-translate-x: 0;
+    --tw-translate-y: 0;
+    --tw-rotate: 0;
+    --tw-skew-x: 0;
+    --tw-skew-y: 0;
+    --tw-scale-x: 1;
+    --tw-scale-y: 1;
+  }
+
+  .filter {
+    --tw-blur: ;
+    --tw-brightness: ;
+    --tw-contrast: ;
+    --tw-grayscale: ;
+    --tw-hue-rotate: ;
+    --tw-invert: ;
+    --tw-saturate: ;
+    --tw-sepia: ;
+    --tw-drop-shadow: ;
+  }
+}
+
+@layer reset {
+  /* Modern reset: https://piccalil.li/blog/a-more-modern-css-reset/ */
+  /* Box sizing rules */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* Prevent font size inflation */
+
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+
+  /* Remove default margin in favour of better control in authored CSS */
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin-block-end: 0;
+  }
+
+  /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+
+  ul[role="list"],
+  ol[role="list"] {
+    list-style: none;
+  }
+
+  /* Set core body defaults */
+
+  body {
+    min-height: 100vh;
+    line-height: 1.5;
+  }
+
+  /* Set shorter line heights on headings and interactive elements */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  input,
+  label {
+    line-height: 1.1;
+  }
+
+  /* Balance text wrapping on headings */
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  /* A elements that don't have a class get default styles */
+
+  a:not([class]) {
+    text-decoration-skip-ink: auto;
+    color: currentColor;
+  }
+
+  /* Make images easier to work with */
+
+  img,
+  picture {
+    max-width: 100%;
+    display: block;
+  }
+
+  /* Inherit fonts for inputs and buttons */
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  /* Make sure textareas without a rows attribute are not tiny */
+
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
+
+  /* Anything that has been anchored to should have extra scroll margin */
+  :target {
+    scroll-margin-block: 5ex;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://assets.codepen.io/67044/Satoshi-Regular.woff2")
+      format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://assets.codepen.io/67044/Satoshi-Italic.woff2")
+      format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://assets.codepen.io/67044/Satoshi-Medium.woff2")
+      format("woff2");
+    font-weight: 500;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://assets.codepen.io/67044/Satoshi-MediumItalic.woff2")
+      format("woff2");
+    font-weight: 500;
+    font-display: swap;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://assets.codepen.io/67044/Satoshi-Bold.woff2")
+      format("woff2");
+    font-weight: 700;
+    font-display: swap;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Satoshi";
+    src: url("https://assets.codepen.io/67044/Satoshi-Black.woff2")
+      format("woff2");
+    font-weight: 900;
+    font-display: swap;
+    font-style: normal;
+  }
+}
+
+:root {
+  color-scheme: light only;
+  --color-dark: #292a2d;
+  --color-dark-glare: #55585e;
+  --color-mid: #aba9a2;
+  --color-light: #eeeeea;
+  --color-light-shade: #e4e4de;
+  --color-light-glare: #ffffff;
+  --color-primary: #0077b6;
+  --color-primary-bright: #90e0ef;
+  --space-xs: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
+  --space-s: clamp(0.875rem, 0.83rem + 0.22vw, 1rem);
+  --space-m: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+  --space-l: clamp(2.1875rem, 2.07rem + 0.56vw, 2.5rem);
+  --space-xl: clamp(3.0625rem, 2.9rem + 0.78vw, 3.5rem);
+  --space-2xl: clamp(3.5rem, 3.32rem + 0.89vw, 4rem);
+  --space-3xl: clamp(4.375rem, 4.15rem + 1.11vw, 5rem);
+  --space-4xl: clamp(6.5625rem, 6.22rem + 1.67vw, 7.5rem);
+  --space-5xl: clamp(8.75rem, 8.29rem + 2.22vw, 10rem);
+  --size-step-000: clamp(0.740625rem, 0.73rem + 0.07vw, 0.78125rem);
+  --size-step-00: clamp(0.833125rem, 0.79rem + 0.19vw, 0.9375rem);
+  --size-step-0: clamp(0.9375rem, 0.87rem + 0.33vw, 1.125rem);
+  --size-step-1: clamp(1.055rem, 0.95rem + 0.52vw, 1.35rem);
+  --size-step-2: clamp(1.18625rem, 1.03rem + 0.77vw, 1.62rem);
+  --size-step-3: clamp(1.335rem, 1.11rem + 1.08vw, 1.94375rem);
+  --size-step-4: clamp(1.501875rem, 1.2rem + 1.48vw, 2.3325rem);
+  --size-step-5: clamp(1.689375rem, 1.28rem + 1.97vw, 2.799375rem);
+  --size-step-6: clamp(1.900625rem, 1.37rem + 2.59vw, 3.359375rem);
+  --size-step-7: clamp(2.138125rem, 1.44rem + 3.37vw, 4.03125rem);
+  --size-step-8: clamp(2.405625rem, 1.51rem + 4.32vw, 4.8375rem);
+  --size-step-9: clamp(2.70625rem, 1.57rem + 5.51vw, 5.805rem);
+  --size-step-10: clamp(3.044375rem, 1.61rem + 6.97vw, 6.965625rem);
+  --leading-flat: 0.9;
+  --leading-fine: 1.2;
+  --leading-standard: 1.4;
+  --leading-loose: 1.7;
+  --kerning: normal;
+  --kerning-tight: -0.04ch;
+  --kerning-loose: 0.1ch;
+  --heading-kerning: -0.015em;
+  --heading-line-height: var(--leading-fine);
+  --heading-font-family: var(--font-display);
+  --heading-font-weight: var(--font-bold);
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-base: Inter, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+  --font-accent: "Family", "Georgia Pro", Georgia, "URW Bookman",
+    "URW Bookman L", serif;
+  --font-mono: "Roboto Mono", ui-monospace, monospace;
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+  --font-black: 900;
+  --gutter: var(--space-xl);
+  --transition-base: 250ms ease;
+  --transition-movement: 200ms linear;
+  --transition-fade: 300ms ease;
+  --transition-bounce: 500ms cubic-bezier(0.5, 0.05, 0.2, 1.5);
+  --stroke: 1px dashed var(--color-mid);
+  --stroke-solid: 1px solid var(--color-mid);
+  --stroke-solid-thick: 2px solid var(--color-mid);
+  --radius-s: 0.2rem;
+  --radius-m: 0.75rem;
+  --radius-l: 2.5rem;
+  --radius-s-m: clamp(var(--radius), 2vw, var(--radius-m));
+  --uppercase-kerning: 0.04ch;
+  --box-shadow-m: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+@layer base {
+  /* 
+  Global styles 
+  Low-specificity, global styles that apply to the whole 
+  project: https://cube.fyi/css.html
+*/
+  body {
+    margin: 0;
+    background: var(--color-light);
+    color: var(--color-dark);
+    font-size: var(--size-step-1);
+    font-family: var(--font-base);
+    line-height: var(--leading-standard);
+    font-size-adjust: from-font;
+    padding-block: var(--space-xl);
+  }
+
+  :is(h1, h2, h3, h4) {
+    font-feature-settings: "cpsp" on;
+    font-weight: var(--heading-font-weight, var(--font-bold));
+    letter-spacing: var(--heading-kerning, var(--kerning));
+    line-height: var(--heading-line-height, var(--leading-fine));
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: var(--size-step-6);
+    max-width: 20ch;
+  }
+
+  h2 {
+    font-size: var(--size-step-5);
+    max-width: 35ch;
+  }
+
+  h3 {
+    font-size: var(--size-step-4);
+    max-width: 35ch;
+  }
+
+  :is(h4, h5, h6) {
+    font-size: var(--size-step-3);
+  }
+
+  small {
+    font-size: var(--size-step-1);
+  }
+
+  ins {
+    text-decoration: none;
+    background: var(--color-light-shade);
+    padding-inline: 0.3em;
+  }
+
+  :is(code, kbd, samp, pre) {
+    font-size: var(--size-step-0);
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+      Consolas, "DejaVu Sans Mono", monospace;
+  }
+
+  :is(code, kbd, samp) {
+    padding: 0.2em 0.2em 0.05em 0.2em;
+    hyphens: none;
+    tab-size: 2;
+    text-align: left;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  /* This is quite a new property, so we want code styles to at least, not be huge */
+
+  @supports not (font-size-adjust: from-font) {
+    :is(code, kbd, samp) {
+      font-size: 0.9em;
+    }
+  }
+
+  code {
+    background-color: var(--color-light-shade);
+    font-weight: var(--font-bold);
+    font-family: monospace;
+  }
+
+  pre:has(code) {
+    width: max-content;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  pre code {
+    border: none;
+    background: none;
+    padding: 0;
+  }
+
+  :not(pre) > code {
+    font-weight: bold;
+  }
+
+  kbd {
+    border: 1px solid;
+    padding-block-end: 0.1em;
+  }
+
+  var {
+    font-style: normal;
+    font-weight: var(--font-medium);
+  }
+
+  q {
+    font-style: italic;
+  }
+
+  /* Position sub and sup with transform so it doesn't affect leading */
+
+  sub,
+  sup {
+    font-size: var(--size-step-00);
+    vertical-align: baseline;
+    display: inline-block;
+  }
+
+  sub {
+    transform: translateY(0.65ex);
+  }
+
+  sup {
+    transform: translateY(-0.7ex);
+  }
+
+  /* Lists */
+
+  :is(ol, ul) {
+    margin-block-end: 0;
+  }
+
+  ul {
+    padding-inline-start: 1.8ch;
+    list-style-type: disc;
+  }
+
+  ul:not([class]) > li {
+    padding-inline-start: var(--space-xs);
+  }
+
+  ul ::marker {
+    font-size: 0.8lh;
+  }
+
+  ol {
+    padding-inline-start: 2ch;
+  }
+
+  ol ::marker {
+    font-size: 1em;
+    font-weight: var(--font-bold);
+  }
+
+  /* Lists with classes and roles will be out of standard flow, so remove the default spacing and style */
+
+  [role="list"][class],
+  [role="tablist"] {
+    margin-block: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Description lists */
+
+  dt {
+    font-weight: var(--font-medium);
+  }
+
+  dt + dd {
+    margin-block-start: var(--space-xs);
+  }
+
+  dd + dt {
+    margin-block-start: var(--space-s);
+  }
+
+  dd {
+    margin-inline-start: 1.5ch;
+  }
+
+  /* Blockquotes */
+
+  blockquote {
+    margin-inline: 0;
+  }
+
+  blockquote footer {
+    margin-block-start: var(--space-s);
+    font-size: var(--size-step-0);
+    color: var(--color-primary);
+  }
+
+  blockquote q {
+    font-style: normal;
+  }
+
+  /* Address */
+
+  address {
+    font-style: normal;
+  }
+
+  /* Media */
+
+  :is(video, iframe[src*="youtube"], iframe[src*="vimeo"]) {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+  }
+
+  :is(img, picture) {
+    height: auto;
+    max-width: 100%;
+    display: block;
+  }
+
+  picture {
+    width: max-content;
+  }
+
+  figure {
+    margin-inline: 0;
+  }
+
+  figcaption {
+    padding-block-start: 0.5em;
+    font-size: var(--size-step-0);
+    font-family: var(--font-mono);
+  }
+
+  /* Tables */
+
+  table {
+    border: var(--stroke);
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th {
+    text-align: left;
+    font-weight: var(--font-bold);
+    line-height: var(--leading-fine);
+    background: rgb(0 0 0 / 2%);
+  }
+
+  thead th {
+    padding-block: var(--space-s);
+  }
+
+  td,
+  th {
+    padding: var(--space-xs) var(--space-s);
+  }
+
+  th:not(:only-of-type) {
+    border-block-end: var(--stroke);
+  }
+
+  th:only-of-type {
+    border-inline-end: var(--stroke);
+  }
+
+  :is(th, td) ~ :is(th, td) {
+    border-inline-start: var(--stroke);
+  }
+
+  tr + tr :is(th, td) {
+    border-block-start: var(--stroke);
+  }
+
+  caption {
+    caption-side: bottom;
+    margin-block-start: var(--space-s);
+  }
+
+  * + table {
+    margin-block-start: 1em;
+  }
+
+  /* Interactive */
+
+  a:not([class]):hover {
+    text-underline-offset: 0.2lh;
+    text-decoration: none;
+  }
+
+  :is(h1, h2, h3, h4) a:not([class]) {
+    text-decoration-thickness: 0.1ex;
+    text-underline-offset: 0.2ex;
+  }
+
+  :is(h1, h2, h3, h4) a:not([class]):hover {
+    text-underline-offset: 0.3ex;
+  }
+
+  abbr {
+    cursor: help;
+    text-underline-offset: 0.2ex;
+  }
+
+  /* Favour focus-visible over focus so click events don't trigger focus styles */
+
+  :focus {
+    outline: none;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-color, currentColor);
+    outline-offset: var(--focus-offset, 0.2lh);
+  }
+
+  /* Firefox is the only browser that doesn't outline the whole element unless you 
+   make it display: inline-block. That in itself causes multiple flow issues so 
+   we can detect it, using its own vendor prefix and reduce focus offset
+*/
+
+  @supports (-moz-appearance: none) {
+    :root {
+      --focus-offset: 0.08em;
+    }
+  }
+
+  ::selection {
+    color: var(--color-dark);
+    background: var(--color-light);
+  }
+
+  :target {
+    scroll-margin-block: 5lh;
+  }
+
+  /* Horizontal rule*/
+
+  hr {
+    border: none;
+    border-block-start: var(--stroke-solid-thick);
+    margin-block: var(--flow-space, var(--space-xl));
+  }
+
+  /* Scale icons within container*/
+
+  svg:not([class]) {
+    width: auto;
+    height: 1lh;
+  }
+
+  /* Don't let SVGs shirnk in flex contexts where there's less space */
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  svg[role="img"] {
+    /* Allow the width and height attributes to take over */
+    width: revert;
+    height: revert;
+
+    /* We've got a dark theme on this site, so if there's no background, dark lines will be hard to see */
+    background: var(--color-light);
+
+    /* A tiny bit of padding frames the image nicely */
+    padding: var(--space-xs);
+  }
+
+  /* Forms */
+
+  :is(input, button, textarea, select) {
+    font: inherit;
+  }
+
+  /* There's a .flow composition, but this prevents forms from having 
+   to have that applied where markup is harder to control in certain systems.
+   It still uses the flow-space variables though to make managing space easier */
+
+  form > * + * {
+    margin-top: var(--flow-space, 1rem);
+  }
+
+  :is(input, select, textarea) {
+    accent-color: var(--color-primary);
+  }
+
+  :is(
+      input:not([type="checkbox"], [type="radio"], [type="color"]),
+      select,
+      textarea
+    ) {
+    padding: 0.5em 0.8em;
+    border-radius: var(--radius-s);
+    border: var(--stroke-solid);
+    background: var(--color-light-glare);
+    color: var(--color-dark);
+    width: 100%;
+  }
+
+  label {
+    line-height: var(--leading-fine);
+    font-weight: var(--font-medium);
+  }
+
+  /* Creates a line break, but maintains its inline behaviour */
+
+  label::after {
+    content: "\A";
+    white-space: pre;
+  }
+
+  label + input {
+    margin-block-start: var(--space-xs);
+  }
+
+  /* Usually label wraps checkbox and radio buttons, so we give ourselves more layout and text-flow control with flex */
+
+  label:has(input) {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-s);
+    font-weight: var(--font-normal);
+  }
+
+  label:has(input) + label:has(input) {
+    --flow-spce: var(--space-s-m);
+  }
+
+  /* Slightly adjusts the vertical position of the check/radio */
+  label:has(input) input {
+    transform: translateY(0.25ex);
+  }
+
+  input:disabled {
+    background: var(--color-light-shade);
+  }
+
+  input:disabled,
+  label input:disabled + * {
+    cursor: not-allowed;
+  }
+
+  /* Sets a sesible height if textarea rows attribute is missing */
+
+  textarea:not([rows]) {
+    min-height: 10em;
+  }
+
+  fieldset {
+    border: var(--stroke);
+    padding: var(--space-s);
+  }
+
+  legend {
+    font-weight: var(--font-medium);
+    padding-inline: var(--space-xs);
+  }
+
+  /* Details and summary */
+  summary {
+    font-weight: var(--font-bold);
+    cursor: default;
+  }
+
+  details[open] summary {
+    margin-block-end: var(--space-s);
+  }
+
+  .button {
+    --button-bg: var(--color-primary);
+    --button-text: var(--color-light);
+    --button-x-padding: 2em;
+    --button-y-padding: 1.1em;
+    --focus-color: var(--color-primary);
+
+    display: inline-flex;
+    gap: 0.4ch;
+    align-items: center;
+    line-height: var(--leading-flat);
+    position: relative;
+    border: none;
+    cursor: pointer;
+    background: var(--button-bg);
+    color: var(--button-text);
+    padding: var(--button-y-padding) var(--button-x-padding);
+    /*text-transform: uppercase;*/
+    letter-spacing: var(--uppercase-kerning);
+    text-decoration: none;
+    /*font-size: var(--size-step-00);*/
+    font-weight: var(--font-bold);
+  }
+
+  /* the most developer hover state I could think of https://www.figma.com/file/xTUEEo1a4WsB5qBtBk3XOC/Sketch-up?type=whiteboard&node-id=67-80&t=B5RVDQOZR2vxNLYs-4 */
+
+  .button:hover {
+    filter: brightness(90%);
+  }
+
+  .button:active {
+    transform: scale(99%);
+  }
+
+  /* VARIANT EXCEPTIONS */
+  [data-button-variant="secondary"] {
+    --button-bg: var(--color-dark-glare);
+    --focus-color: var(--color-dark);
+
+    /* Also set the corner colors */
+    --corner-secondary-color: var(--color-primary);
+  }
+
+  [data-button-variant="ghost"] {
+    --button-bg: transparent;
+    --button-text: var(--color-dark);
+  }
+}
+
+@layer prose {
+  .prose {
+    --flow-space: var(--space-l);
+  }
+
+  .prose h1 {
+    max-width: 20ch;
+  }
+
+  .prose :is(h1, h2, h3) {
+    /* Allow words to break by default. Great for small viewports */
+    overflow-wrap: anywhere;
+  }
+
+  .prose h2 {
+    max-width: 30ch;
+  }
+
+  .prose h3 {
+    max-width: 40ch;
+  }
+
+  /* Increase legibility by limiting line lengths */
+
+  .prose :is(p, li, dl, figcaption, blockquote) {
+    max-width: 60ch;
+    text-wrap: pretty;
+  }
+
+  /* Heading flow for elements that follow them */
+
+  .prose :is(h1, h2, h3, h4) + *:not([class]) {
+    --flow-space: var(--space-m);
+  }
+
+  /* Add more space on and around figures and tables */
+
+  .prose :is(figure, table),
+  .prose :is(figure, table) + * {
+    --flow-space: var(--space-2xl);
+  }
+
+  /* Add more space to headings on block start */
+
+  .prose * + :is(h1, h2, h3, h4):not([class]) {
+    --flow-space: var(--space-xl);
+  }
+
+  /* Flow for list items */
+
+  .prose :is(ul, ol):not([class]) li + li,
+  .prose :is(ul, ol):not([class]) li > :is(ol, ul) {
+    margin-block-start: var(--space-xs);
+  }
+
+  /* Add a subtle stroke to media in case the background blends with the prose container */
+
+  .prose :is(img, picture, video, svg[width][height]) {
+    /* border: var(--stroke-solid); */
+  }
+
+  .prose--alone > *:first-child {
+    margin-block-start: 0;
+  }
+
+  /* Add lots of space for horizontal rules */
+  hr {
+    --flow-space: var(--space-2xl);
+  }
+
+  /* Undo the breaking of words rule because we don't need it on larger viewports */
+
+  @media (width > 48rem) {
+    .prose :is(h1, h2, h3) {
+      overflow-wrap: unset;
+    }
+  }
+}
+
+@layer layouts {
+  .switch-input {
+    --switch-input-thumb-size: 32px;
+    --switch-input-thumb-bg: var(--color-light-glare);
+    --switch-input-thumb-stroke: 1px solid var(--color-mid);
+    --switch-input-off-bg: var(--color-dark);
+    --switch-input-off-text: var(--color-light-glare);
+    --switch-input-on-bg: var(--color-primary);
+    --switch-input-on-text: var(--color-light-glare);
+    --switch-input-gutter: 4px;
+    --switch-input-decor-space: var(--switch-input-gutter) 1.25ch;
+    --switch-input-focus-stroke: 2px solid var(--color-primary);
+    --switch-input-font-weight: bold;
+    --switch-input-font-family: inherit;
+    --switch-input-font-size: 18cqw;
+    --switch-input-transition: inset 50ms linear;
+    width: calc(
+      (var(--switch-input-thumb-size) * 2) + (var(--switch-input-gutter) * 3)
+    );
+    height: calc(
+      var(--switch-input-thumb-size) + (var(--switch-input-gutter) * 2)
+    );
+    border-radius: calc(
+      var(--switch-input-thumb-size) + var(--switch-input-gutter)
+    );
+    padding: var(--switch-input-gutter);
+    background: var(--switch-input-off-bg);
+    color: var(--switch-input-off-text);
+    text-align: left;
+    text-transform: uppercase;
+    font-family: var(--switch-input-font-family);
+    font-weight: var(--switch-input-font-weight);
+    position: relative;
+    cursor: pointer;
+    container-type: inline-size;
+  }
+
+  .switch-input__decor {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    padding: var(--switch-input-decor-space);
+    font-size: var(--switch-input-font-size);
+    display: flex;
+    width: 100%;
+    align-items: center;
+  }
+
+  .switch-input__decor[data-switch-input-state="off"] {
+    justify-content: flex-end;
+  }
+
+  .switch-input__thumb {
+    display: block;
+    width: var(--switch-input-thumb-size);
+    height: var(--switch-input-thumb-size);
+    border-radius: var(--switch-input-thumb-size);
+    background: var(--switch-input-thumb-bg);
+    border: var(--switch-input-thumb-stroke);
+    z-index: 1;
+    position: absolute;
+    inset-block-start: var(--switch-input-gutter);
+    inset-inline-start: var(--switch-input-gutter);
+    transition: var(--switch-input-transition);
+  }
+
+  .switch-input:has(:focus-visible) .switch-input__thumb {
+    outline: var(--switch-input-focus-stroke);
+    outline-offset: -4px;
+  }
+
+  .switch-input:has(:checked) {
+    background: var(--switch-input-on-bg);
+    color: var(--switch-input-on-text);
+  }
+
+  .switch-input:has(:checked) .switch-input__thumb {
+    inset-inline-start: calc(
+      var(--switch-input-thumb-size) + (var(--switch-input-gutter) * 2)
+    );
+  }
+
+  /*
+CLUSTER
+More info: https://every-layout.dev/layouts/cluster/
+A layout that lets you distribute items with consitent
+spacing, regardless of their size
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--space-m)): This defines the space
+between each item.
+
+--cluster-horizontal-alignment (flex-start) How items should align
+horizontally. Can be any acceptable flexbox aligmnent value.
+
+--cluster-vertical-alignment How items should align vertically.
+Can be any acceptable flexbox alignment value.
+*/
+
+  .cluster {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gutter, var(--space-m));
+    justify-content: var(--cluster-horizontal-alignment, flex-start);
+    align-items: var(--cluster-vertical-alignment, center);
+  }
+
+  /* 
+FLOW COMPOSITION 
+Like the Every Layout stack: https://every-layout.dev/layouts/stack/
+Info about this implementation: https://piccalil.li/quick-tip/flow-utility/ 
+*/
+
+  .flow > * + * {
+    margin-top: var(--flow-space, 1em);
+  }
+
+  /* AUTO GRID
+Related Every Layout: https://every-layout.dev/layouts/grid/
+More info on the flexible nature: https://piccalil.li/tutorial/create-a-responsive-grid-layout-with-no-media-queries-using-css-grid/
+A flexible layout that will create an auto-fill grid with
+configurable grid item sizes
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--space-m)): This defines the space
+between each item.
+
+--grid-min-item-size (14rem): How large each item should be
+ideally, as a minimum.
+
+--grid-placement (auto-fill): Set either auto-fit or auto-fill
+to change how empty grid tracks are handled */
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(
+      var(--grid-placement, auto-fill),
+      minmax(var(--grid-min-item-size, 16rem), 1fr)
+    );
+    gap: var(--gutter, var(--space-l));
+  }
+
+  /* A split 50/50 layout */
+
+  .grid[data-layout="50-50"] {
+    --grid-placement: auto-fit;
+    --grid-min-item-size: clamp(16rem, 50vw, 33rem);
+  }
+
+  /* Three column grid layout */
+
+  .grid[data-layout="thirds"] {
+    --grid-placement: auto-fit;
+    --grid-min-item-size: clamp(16rem, 33%, 20rem);
+  }
+
+  /* Twelve column grid layout */
+  .grid[data-layout="twelfths"] {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  /* Special layout for larger devices. Used on home page intro */
+
+  .grid[data-layout="lg:10/2"] {
+    grid-template-columns: 100%;
+  }
+
+  @media (min-width: 760px) {
+    .grid[data-layout="lg:10/2"] {
+      grid-template-columns: clamp(40rem, 80vw, 60rem);
+    }
+  }
+
+  @media (min-width: 940px) {
+    .grid[data-layout="lg:10/2"] {
+      grid-template-columns: 10fr 2fr;
+    }
+  }
+
+  /* Masonry */
+  .masonry {
+    padding: 0;
+    list-style: none;
+    column-count: 1;
+    column-gap: var(--space-l);
+
+    @media (width > 48rem) {
+      column-count: 2;
+    }
+
+    @media (width > 80rem) {
+      column-count: 3;
+    }
+  }
+
+  /*
+REPEL
+A little layout that pushes items away from each other where
+there is space in the viewport and stacks on small viewports
+
+CUSTOM PROPERTIES AND CONFIGURATION
+--gutter (var(--space-m)): This defines the space
+between each item.
+
+--repel-vertical-alignment How items should align vertically.
+Can be any acceptable flexbox alignment value.
+*/
+
+  .repel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: var(--repel-vertical-alignment, center);
+    gap: var(--gutter, var(--space-m));
+  }
+
+  .repel[data-nowrap] {
+    flex-wrap: nowrap;
+  }
+
+  /* 
+SIDEBAR
+More info: https://every-layout.dev/layouts/sidebar/
+A layout that allows you to have a flexible main content area
+and a "fixed" width sidebar that sits on the left or right.
+If there is not enough viewport space to fit both the sidebar
+width *and* the main content minimum width, they will stack
+on top of each other
+
+CUSTOM PROPERTIES AND CONFIGURATION
+ --gutter (var(--space-size-1)): This defines the space
+between the sidebar and main content.
+
+--sidebar-target-width (20rem): How large the sidebar should be
+
+--sidebar-content-min-width(50%): The minimum size of the main content area
+
+EXCEPTIONS
+.sidebar[data-direction='rtl']: flips the sidebar to be on the right 
+*/
+
+  .sidebar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gutter, var(--space-s-l));
+  }
+
+  .sidebar:not([data-direction]) > :first-child {
+    flex-basis: var(--sidebar-target-width, 20rem);
+    flex-grow: 1;
+  }
+
+  .sidebar:not([data-direction]) > :last-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: var(--sidebar-content-min-width, 50%);
+  }
+
+  .sidebar[data-reversed] {
+    flex-direction: row-reverse;
+  }
+
+  .sidebar[data-direction="rtl"] > :last-child {
+    flex-basis: var(--sidebar-target-width, 20rem);
+    flex-grow: 1;
+  }
+
+  .sidebar[data-direction="rtl"] > :first-child {
+    flex-basis: 0;
+    flex-grow: 999;
+    min-width: var(--sidebar-content-min-width, 50%);
+  }
+
+  /*
+  SWITCHER
+  More info: https://every-layout.dev/layouts/switcher/
+  A layout that allows you to lay **2** items next to each other
+  until there is not enough horizontal space to allow that.
+
+  CUSTOM PROPERTIES AND CONFIGURATION
+  --gutter (var(--space-size-1)): This defines the space
+  between each item
+
+  --switcher-target-container-width (40rem): How large the container
+  needs to be to allow items to sit inline with each other
+
+  --switcher-vertical-alignment How items should align vertically.
+  Can be any acceptable flexbox alignment value.
+  */
+
+  .switcher {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--gutter, var(--space-l));
+    align-items: var(--switcher-vertical-alignment, flex-start);
+  }
+
+  .switcher > * {
+    flex-grow: 1;
+    flex-basis: calc(
+      (var(--switcher-target-container-width, 40rem) - 100%) * 999
+    );
+  }
+
+  /* Max 2 items,
+  so anything greater than 2 is ful width */
+
+  .switcher > :nth-child(n + 3) {
+    flex-basis: 100%;
+  }
+
+  /*
+  WRAPPER COMPOSITION 
+  A common wrapper/container
+  */
+
+  .wrapper,
+  .row {
+    margin-inline: auto;
+    max-width: clamp(16rem, var(--wrapper-max-width, 100vw), 110rem);
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    position: relative;
+  }
+
+  /* 
+  REGION UTILITY
+  Consistent block padding for page sections
+  */
+
+  .region {
+    padding-block: var(--region-space, var(--space-xl-2xl));
+  }
+
+  /* 
+  BREAKOUT UTILITY
+  Break out possibility from layout
+  */
+
+  .breakout {
+    width: 100cqi;
+    position: relative;
+    z-index: 1;
+    padding: var(--space-m);
+  }
+}
+
+@layer helper {
+  /* 
+    VISUALLY HIDDEN UTILITY
+    Info: https://piccalil.li/quick-tip/visually-hidden/ 
+  */
+
+  .visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap;
+  }
+
+  .fixed {
+    position: fixed;
+  }
+
+  .absolute {
+    position: absolute;
+  }
+
+  .block {
+    display: block;
+  }
+
+  .inline {
+    display: inline;
+  }
+
+  .table {
+    display: table;
+  }
+
+  .grid {
+    display: grid;
+  }
+
+  .flex {
+    display: flex;
+  }
+
+  .contents {
+    display: contents;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .transform {
+    transform: translate(var(--tw-translate-x), var(--tw-translate-y))
+      rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y))
+      scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  }
+
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  .items-center {
+    align-items: center;
+  }
+
+  .items-baseline {
+    align-items: baseline;
+  }
+
+  .mt-0 {
+    margin-top: 0;
+  }
+
+  .p-0 {
+    padding: 0;
+  }
+
+  .p-\[3px\] {
+    padding: 3px;
+  }
+
+  .p-m {
+    padding: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+  }
+
+  .py-m {
+    padding-top: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+    padding-bottom: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+  }
+
+  .pr-m {
+    padding-right: clamp(1.3125rem, 1.24rem + 0.33vw, 1.5rem);
+  }
+
+  .pt-l {
+    padding-top: clamp(2.1875rem, 2.07rem + 0.56vw, 2.5rem);
+  }
+
+  .leading-\[1\] {
+    line-height: 1;
+  }
+
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .filter {
+    filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast)
+      var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert)
+      var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+  }
+
+  .gutter-xs {
+    --gutter: clamp(0.4375rem, 0.41rem + 0.11vw, 0.5rem);
+  }
+}
