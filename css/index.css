@@ -173,6 +173,7 @@ code {
 
 .header__topgrid {
   display: grid;
+  align-self: flex-start;
   gap: var(--space-l);
   @media (width > 48rem) {
     grid-template-columns: 1fr 2fr;
