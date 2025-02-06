@@ -438,3 +438,15 @@ hr {
     font-size: var(--size-step-000);
   }
 }
+
+
+.grid__end {
+  @media (width > 64rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+  .typo-grid {
+    @media (width > 64rem) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}
