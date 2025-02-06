@@ -440,17 +440,15 @@ hr {
 }
 
 
-.grid__end {
-  grid-template-columns:auto;
+.grid-end {
   @media (width > 90rem) {
+    display: grid;
+    column-gap: var(--space-m);
     grid-template-columns: 1fr 1fr;
   }
   .typo-grid {
     @media (width > 90rem) {
       grid-template-columns: 1fr 1fr;
-    }
-    h3 {
-      margin-block-start: 0;
     }
   }
 }
