@@ -441,11 +441,11 @@ hr {
 
 
 .grid__end {
-  @media (width > 64rem) {
+  @media (width > 90rem) {
     grid-template-columns: 1fr 1fr;
   }
   .typo-grid {
-    @media (width > 64rem) {
+    @media (width > 90rem) {
       grid-template-columns: 1fr 1fr;
     }
   }
