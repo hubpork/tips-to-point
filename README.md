@@ -1,7 +1,9 @@
 
 # Tips-to-point
 
-Tips for scoring points at the job interview.
+🔥 Mit KI zum Wow-Effekt – Tipps zum Punkten im Job-Interview! 🎯
+In einem Bewerbungsgespräch mit kreativen und KI-gestützten Marketing-Video überzeugen!
+
 
 ## Authors
 
