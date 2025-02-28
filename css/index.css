@@ -84,6 +84,10 @@ h3 {
   margin-block-end: var(--space-m);
 }
 
+figure {
+  margin: 0;
+}
+
 .pro {
   color: #606c38;
 }
@@ -450,5 +454,18 @@ hr {
     @media (width > 90rem) {
       grid-template-columns: 1fr 1fr;
     }
+  }
+}
+
+.intro-grid {
+  display: grid;
+
+  @media (width > 64rem) {
+    gap: var(--space-l);
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  figure, h2 {
+    margin: 0;
   }
 }
