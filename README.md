@@ -4,6 +4,14 @@
 🔥 Mit KI zum Wow-Effekt – Tipps zum Punkten im Job-Interview! 🎯
 In einem Bewerbungsgespräch mit kreativen und KI-gestützten Marketing-Video überzeugen!
 
+# Tips for KI Typo
+
+🔥 Ein Bonus zum Thema Typo und Qualit&auml;t mit KI.
+
+
+# Tips Replicate
+
+🔥 Hohe Kosten bei KI-Bild- und Video-Generatoren?
 
 ## Authors
 
