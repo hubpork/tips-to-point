@@ -136,8 +136,12 @@ figure {
 
 .star {
   position: absolute;
-  top: 0.3lh;
+  top: 0lh;
   left: 0;
+
+  @media (width > 64rem) {
+    top: 0.3lh;
+  }
 
   + .star {
     top: 0.9lh;
