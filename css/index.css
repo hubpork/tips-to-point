@@ -180,6 +180,7 @@ code {
 
 .header__topgrid {
   display: grid;
+  align-content: flex-start;
   align-self: flex-start;
   gap: var(--space-l);
   @media (width > 48rem) {
@@ -196,6 +197,7 @@ code {
 
 .header__topgrid-content {
   display: grid;
+  align-content: flex-start;
   gap: var(--space-s);
 }
 
