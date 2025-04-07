@@ -463,6 +463,19 @@ hr {
   }
 }
 
+.grid-full {
+  @media (width > 90rem) {
+    display: grid;
+    column-gap: var(--space-m);
+    grid-template-columns: 1fr;
+  }
+  .typo-grid {
+    @media (width > 90rem) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
 .intro-grid {
   display: grid;
 
