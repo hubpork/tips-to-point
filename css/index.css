@@ -125,19 +125,19 @@ figure {
   }
 }
 
-.goodbye {
-  aspect-ratio: 1/1;
-  margin-block-start: 2rem;
-}
-
 .typo-img {
   height: auto !important;
 }
 
+.ico,
 .star {
   position: absolute;
   top: 0lh;
   left: 0;
+  stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
+  path {
+    stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
+  }
 
   @media (width > 64rem) {
     top: 0.3lh;
@@ -152,6 +152,21 @@ figure {
     left: 0.5lh;
   }
 }
+
+.star {
+  stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
+  path {
+    stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
+  }
+}
+
+.star-invert {
+  path {
+    fill: light-dark(var(--color-light-shade), var(--color-dark)) !important;
+    stroke: light-dark(var(--color-light-shade), var(--color-dark)) !important;
+  }
+}
+
 
 code {
   max-width: 80ch;
@@ -481,4 +496,9 @@ hr {
   figure, h2 {
     margin: 0;
   }
+}
+
+.goodbye {
+  aspect-ratio: 1/1;
+  margin-block-start: 2rem;
 }
