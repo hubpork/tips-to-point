@@ -129,20 +129,27 @@ figure {
   height: auto !important;
 }
 
+.star-alignment {
+  position: relative;
+}
+
 .ico,
 .star {
   position: absolute;
   top: 0lh;
-  left: 0;
+  left: -2lh;
   stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
   path {
     stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
   }
 
-  @media (width > 64rem) {
-    top: 0.2lh;
+  @media (width > 48rem) {
+    top: 0.15lh;
   }
 
+  @media (width > 64rem) {
+    top: 0.35lh;
+  }
 
   @media (width > 90rem) {
     top: 1.5lh;
@@ -154,8 +161,8 @@ figure {
     left: -1lh;
   }
   + .star + .star {
-    top: 1.1lh;
-    left: 0.5lh;
+    top: -0.1lh;
+    left: -1lh;
   }
 }
 
