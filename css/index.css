@@ -139,7 +139,7 @@ figure {
     stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
   }
 
-  @media (width > 64rem) {
+  @media (width > 90rem) {
     top: 1.5lh;
   }
 
