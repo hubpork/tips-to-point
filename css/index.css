@@ -139,9 +139,15 @@ figure {
     stroke: light-dark(var(--color-dark), var(--color-light-shade)) !important;
   }
 
+  @media (width > 64rem) {
+    top: 0.2lh;
+  }
+
+
   @media (width > 90rem) {
     top: 1.5lh;
   }
+
 
   + .star {
     top: 0.9lh;
