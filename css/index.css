@@ -151,11 +151,6 @@ figure {
     top: 0.35lh;
   }
 
-  @media (width > 90rem) {
-    top: 1.5lh;
-  }
-
-
   + .star {
     top: 0.9lh;
     left: -1lh;
