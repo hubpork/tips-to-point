@@ -148,7 +148,7 @@ figure {
   }
 
   @media (width > 64rem) {
-    top: 0.35lh;
+    top: 0.3lh;
   }
 
   + .star {
