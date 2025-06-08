@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="revisit-after" content="5 days" />
+    <meta name="google-site-verification" content="fgcUV1OivTEdwYkS0ej35CyTb2FK7c2rm2PzHKQ0URI" />
+    <title>Suno AI – Erstelle Musik mit KI in Sekunden</title>
+
+    <meta name="description" content="🎵 Erstelle Songs mit Text und Stil deiner Wahl – Der Suno Generator nutzt modernste KI, um aus deinen Ideen komplette Tracks zu machen. Jetzt kostenlos testen!"/>
+    <link rel="canonical" href="https://tips-to-point.vercel.app/typo.html" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Suno AI – Erstelle Musik mit KI in Sekunden" />
+    <meta property="og:description" content="🎵 Erstelle Songs mit Text und Stil deiner Wahl – Der Suno Generator nutzt modernste KI, um aus deinen Ideen komplette Tracks zu machen. Jetzt kostenlos testen!" />
+    <meta property="og:url" content="https://tips-to-point.vercel.app/typo.html" />
+    <meta property="og:image" content="https://tips-to-point.vercel.app/img/text/ideogram.jpeg">
+    <meta property="og:site_name" content="Michel Maillard - KI-Experte" />
+    <meta property="article:publisher" content="https://www.instagram.com/maillard_dev/" />
+    <meta property="article:author" content="https://www.instagram.com/maillard_dev/" />
+    <meta property="article:section" content="KI-Tipps" />
+    <link rel="icon" href="https://assets.codepen.io/67044/favicon-stories.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/suno-generator.css" />
+</head>
+<body>
+    <header class="header row" data-direction="rtl">
+        <div class="header__top">
+            <div>
+                <h1 class="logo">SUNO <sup>Prompt Generator</sup></h1>
+            </div>
+        </div>
+        <div class="header__middle">
+            <div class="tagline">Von <a href="https://www.maillard.dev">Michel Maillard</a></div>
+        </div>
+        <hr />
+    </header>
+  
+    <main class="wrapper">
+        <section class="prose">
+            <label for="voice">Wähle eine Stimme:</label>
+            <select id="voice">
+              <option value="">Bitte Auswählen</option>
+              <option value="Soft female vocals">Soft female vocals</option>
+              <option value="Strong male vocals">Strong male vocals</option>
+              <option value="Whisper vocals">Whisper vocals</option>
+              <option value="Spoken word">Spoken word</option>
+              <option value="Distorted screams">Distorted screams</option>
+              <option value="Child-like vocals">Child-like vocals</option>
+              <option value="Operatic soprano">Operatic soprano</option>
+              <option value="Auto-tuned pop vocals">Auto-tuned pop vocals</option>
+              <option value="Vintage crooner style">Vintage crooner style</option>
+              <option value="Deep robotic voice">Deep robotic voice</option>
+            </select>
+          
+            <label for="style">Wähle einen Stil:</label>
+            <select id="style">
+              <option value="">Bitte Auswählen</option>
+              <option value="melancholy">Melancholy</option>
+              <option value="empowerment">Empowerment</option>
+              <option value="romantic">Romantic</option>
+              <option value="storytelling">Storytelling</option>
+              <option value="random">🎲 Zufälliger Stil</option>
+            </select>
+          
+            <button onclick="generatePrompt()">Prompt generieren</button>
+            <textarea id="output" readonly></textarea>
+            <button id="copyBtn" onclick="copyPrompt()">📋 In Zwischenablage kopieren</button>
+          
+            <script>
+              const prompts = {
+                melancholy: [
+                  "Acoustic, minimalist, melancholy tone, solo guitar, rainy day, personal reflection",
+                  "Piano-driven, sparse strings, emotional storytelling, open chords, gentle tension",
+                  "Lo-fi folk, intimate vocals, bedroom production, regretful lyrics, reflective tone",
+                  "Slow indie rock, echoey guitars, haunting harmonies, dusk atmosphere, nostalgic mood",
+                  "Dream pop texture, breathy vocals, shimmering pads, inner sadness, underwater feel",
+                  "Slow tempo jazz, brushed drums, melancholic saxophone, dim lights, unspoken longing",
+                  "Minimal synthwave, faded emotions, soft drones, pastel lights, quiet yearning",
+                  "Neo-classical piano, long pauses, soft textures, emotional distance, slow bloom",
+                  "Ambient drone, fading memories, tape hiss, distant melodies, loss and longing",
+                  "Chamber pop, introspective lyrics, lush instrumentation, slow unfolding emotions",
+                  "Downtempo trip-hop, smoky room feel, introspective voiceovers, echo-heavy production",
+                  "Indie ballad, melancholic melody, delicate fingerpicking, late night mood",
+                  "Post-rock build-up, emotional crescendo, layered guitars, expansive sorrow",
+                  "Solo violin over drone, minimalist sadness, cinematic tension, ambient undercurrent",
+                  "Soft jazz trio, midnight sadness, reflective trumpet, fading candlelight",
+                  "Sad bedroom pop, auto-tuned regret, layered pads, introspective loops",
+                  "Slow breakbeat, dusty samples, memory-soaked tone, subtle melancholy",
+                  "Singer-songwriter style, unresolved chords, quiet pain, honest delivery",
+                  "Sparse techno, minor key pulses, emotional detachment, cold longing",
+                  "Atmospheric folk, echo textures, haunting loneliness, rural isolation"
+                ],
+                empowerment: [
+                  "Rock anthem, strong electric guitar, fast tempo, victory energy, stadium-sized chorus",
+                  "Orchestral hybrid, cinematic rise, bold brass and drums, hero moment, no holding back",
+                  "Electronic dance beat, pulsing rhythm, hype drop, crowd chant feel, big energy burst",
+                  "Industrial pop, distorted synths, defiant lyrics, marching rhythm, rise-from-ashes vibe",
+                  "Trap beat, confident flow, lyrical swagger, uplifting hooks, rebel energy",
+                  "Gospel-inspired power pop, claps, uplifting harmonies, spiritual triumph",
+                  "Synthpop revival, empowering lyrics, neon rhythm, feel-good hooks, dancefloor confidence",
+                  "Grunge-punk edge, raw vocals, stand-your-ground message, dirty riffs, unapologetic tone",
+                  "Hip-hop anthem, high energy, motivational verses, heavy bass, no fear lyrics",
+                  "EDM festival track, build-drop-release, anthemic vocals, celebration energy",
+                  "Pop-punk with shout-along chorus, defiant and free, adrenaline-charged",
+                  "Drum and bass with fierce female vocals, unstoppable motion, power surge",
+                  "Afrobeat-infused pop, rhythmic confidence, joyous empowerment",
+                  "Futuristic pop production, AI rebellion theme, digital courage",
+                  "Power metal track, fast solos, high energy, heroic story",
+                  "Trap metal hybrid, growl vocals and autotune mix, destructive empowerment",
+                  "Big room house, crowd chant elements, invincible feel",
+                  "Hard techno with spoken word confidence, underground rebellion",
+                  "Marching band rhythm, motivational speech samples, protest energy",
+                  "Alternative rock with layered chorus, coming-of-age confidence"
+                ],
+                romantic: [
+                  "Soft acoustic guitar, slow tempo, heartfelt lyrics, candlelight tone, romantic confession",
+                  "Warm piano chords, delicate vocals, intimate tone, emotional lyrics, dreamy arrangement",
+                  "Mid-tempo R&B, smooth falsetto, sensual lyrics, soft groove, nighttime romance",
+                  "Classic ballad format, emotional storytelling, soft strings, slow build, deep connection",
+                  "Dream pop, echo vocals, slow tempo, layered pads, soft heartbreak glow",
+                  "Bossa nova rhythm, mellow chords, relaxed energy, flirtatious tone, vintage romance",
+                  "French café vibes, accordion and piano, light jazz brush, wistful elegance, old world love",
+                  "80s synth ballad, glossy pads, retro charm, neon love story, slow dance nostalgia",
+                  "Slow waltz rhythm, delicate violin, candlelit ballroom feel, deep affection",
+                  "Classic soul duet, love dialogue, lush harmonies, timeless passion",
+                  "Jazz crooner style, velvet vocals, smoky club, flirtatious undertone",
+                  "Latin rhythm ballad, seductive tone, dancing shadows, glowing skin",
+                  "Lo-fi love track, bedroom whispers, soft vinyl crackle, rose-tinted memory",
+                  "Slow funk groove, heartbeat bassline, sweet tension, teasing lyrics",
+                  "Modern synth-R&B, silky tone, love in digital age, heartbeat drums",
+                  "Soft harp and voice, fairytale romance, innocence and wonder",
+                  "Flamenco-flavored romantic ballad, passionate delivery, guitar-driven longing",
+                  "Vintage country duet, star-crossed lovers, dusty road, eternal love",
+                  "Underwater dreamy ambiance, poetic lyrics, slow-motion kisses",
+                  "Ambient chill with romantic samples, lush textures, floating together"
+                ],
+                storytelling: [
+                  "Acoustic folk ballad, personal journey, vivid imagery, campfire tone, honest lyrics",
+                  "Indie narrative song, descriptive verses, first-person voice, smalltown memory theme",
+                  "Cinematic arc, emotional climax, soft strings, character-driven story, poetic lyrics",
+                  "Spoken word over ambient tones, city streets at night, internal monologue feel",
+                  "Guitar + piano duet, two perspectives in love, alternating verses, poetic resolution",
+                  "Lo-fi rap, storytelling flow, real life events, emotional honesty, stripped-down beat",
+                  "Alt-country ballad, train rhythm, journey lyrics, dusty road imagery, nostalgic feel",
+                  "Theatrical cabaret-style, character-driven, quirky lyrics, dramatic pauses, playful narrative",
+                  "Jazz storytelling, lounge band, spoken lyrics, mysterious noir vibe",
+                  "Old blues format, traveler’s tale, dusty harmonica, worn voice",
+                  "Gospel-style moral tale, call and response, redemptive arc",
+                  "Nordic folk myth retelling, traditional instruments, ancient rhythm",
+                  "Post-rock build, wordless narrative through dynamics, instrumental arc",
+                  "Hip-hop autobiography, strong cadence, neighborhood imagery",
+                  "Spaghetti Western score storytelling, harmonica, cinematic revenge plot",
+                  "Fairy tale style, harps and woodwinds, whispered narrative",
+                  "Rock opera excerpt, dramatic scenes, theatrical highs and lows",
+                  "Psychedelic narrative song, surreal imagery, journey through mind",
+                  "Renaissance lute ballad, courtly love story, ancient sound",
+                  "Ambient spoken word with field recordings, fragmented memories"
+                ]
+              };
+          
+              function generatePrompt() {
+                const voice = document.getElementById('voice').value;
+                let style = document.getElementById('style').value;
+                let result = '';
+          
+                if (!voice) {
+                  alert('Bitte wähle eine Stimme.');
+                  return;
+                }
+          
+                if (!style) {
+                  alert('Bitte wähle einen Stil.');
+                  return;
+                }
+          
+                if (style === 'random') {
+                  const keys = Object.keys(prompts);
+                  style = keys[Math.floor(Math.random() * keys.length)];
+                }
+          
+                const stylePrompts = prompts[style];
+                const randomPrompt = stylePrompts[Math.floor(Math.random() * stylePrompts.length)];
+                result = `${randomPrompt}, ${voice}`;
+          
+                document.getElementById('output').value = result;
+              }
+          
+              function copyPrompt() {
+                const output = document.getElementById('output');
+                if (output.value.trim() === '') {
+                  alert('Es gibt keinen Prompt zum Kopieren.');
+                  return;
+                }
+                navigator.clipboard.writeText(output.value)
+                  .then(() => alert('Prompt wurde in die Zwischenablage kopiert.'))
+                  .catch(() => alert('Fehler beim Kopieren des Prompts.'));
+              }
+            </script>
+            <p><a href="/index.html">👉 Zur&uuml;ck zur Startseite</a></p>
+        </section>
+    </main>
+</body>
+</html>
