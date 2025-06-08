@@ -73,7 +73,7 @@ export default function PromptGenerator() {
     const style = getRandom(combinedStyles);
     const subject = getRandom(combinedSubjects);
 
-    const finalPrompt = `Ultra-realistic portrait of a ${subject}, shot with ${camera}, lit with ${mood}, editorial style: ${style} --v 6 --ar 3:4 --q 2`;
+    const finalPrompt = `Ultra-realistic portrait of a ${subject}, shot with ${camera}, lit with ${mood}, editorial style: ${style} --v 7 --ar 3:4 --q 2`;
     setPrompt(finalPrompt);
   };
 
